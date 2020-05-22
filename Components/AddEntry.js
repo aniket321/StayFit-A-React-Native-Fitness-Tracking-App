@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, TouchableOpacity, Text } from "react-native";
-import { getMetricMetaInfo, timeToString } from "../utils/helpers";
+import { getMetricMetaInfo, timeToString } from "../utils/helpers"
+import { submitEntry, removeEntry } from '../utils/api'
 import Sliders from "./Sliders";
 import Stepper from "./Stepper";
 import DateHeader from "./DateHeader";
@@ -55,10 +56,12 @@ export default class AddEntry extends Component {
         const entry = this.state;
 
         this.setState(() => ({ run: 0, bike: 0, swim: 0, sleep: 0, eat: 0 }));
+        submitEntry({ key, entry })
 
     };
     reset = () => {
         const key = timeToString();
+        removeEntry(key)
     };
     render() {
         const metaInfo = getMetricMetaInfo();
