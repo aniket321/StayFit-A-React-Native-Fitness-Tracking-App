@@ -33,6 +33,7 @@ function setDummyData() {
 }
 
 function setMissingDates(dates) {
+    dates = dates === null ? {} : dates
     const length = Object.keys(dates).length
     const timestamp = Date.now()
 
